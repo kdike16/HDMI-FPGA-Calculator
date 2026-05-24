@@ -1,5 +1,5 @@
 Analysis & Synthesis report for HDMI-FPGA-Calculator
-Sat May 23 04:04:35 2026
+Sun May 24 03:39:27 2026
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -43,7 +43,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat May 23 04:04:35 2026          ;
+; Analysis & Synthesis Status     ; Successful - Sun May 24 03:39:27 2026          ;
 ; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                   ; HDMI-FPGA-Calculator                           ;
 ; Top-level Entity Name           ; baseline_c5gx                                  ;
@@ -258,7 +258,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Sat May 23 04:04:23 2026
+    Info: Processing started: Sun May 24 03:38:45 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off HDMI-FPGA-Calculator -c HDMI-FPGA-Calculator
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -270,6 +270,9 @@ Info (12021): Found 2 design units, including 1 entities, in source file debounc
 Info (12021): Found 2 design units, including 1 entities, in source file tick_generator.vhd
     Info (12022): Found design unit 1: tick_generator-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/tick_generator.vhd Line: 16
     Info (12023): Found entity 1: tick_generator File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/tick_generator.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
+    Info (12022): Found design unit 1: edge_detector-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd Line: 14
+    Info (12023): Found entity 1: edge_detector File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd Line: 5
 Info (12127): Elaborating entity "baseline_c5gx" for the top level hierarchy
 Warning (10034): Output port "HEX2" at baseline_c5gx.v(83) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
 Warning (10034): Output port "HEX3" at baseline_c5gx.v(86) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
@@ -545,9 +548,9 @@ Info (21057): Implemented 236 device resources after synthesis - the final resou
     Info (21059): Implemented 110 output pins
     Info (21060): Implemented 97 bidirectional pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 268 warnings
-    Info: Peak virtual memory: 4897 megabytes
-    Info: Processing ended: Sat May 23 04:04:35 2026
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:29
+    Info: Peak virtual memory: 4909 megabytes
+    Info: Processing ended: Sun May 24 03:39:27 2026
+    Info: Elapsed time: 00:00:42
+    Info: Total CPU time (on all processors): 00:00:32
 
 
