@@ -4,38 +4,38 @@ use ieee.numeric_std.all;
 
 entity debouncer is
     generic(
-        DEBOUNCE_TIME : integer := 1000000 
+        DEBOUNCE_TIME : integer := 20  -- in tick periods (e.g. 20ms if tick = 1kHz)
     );
     port(
-        reset        : in  std_logic;
         clk          : in  std_logic;
-        tick         : in  std_logic; -- Enable pulse
-        button_raw   : in  std_logic;
-        button_clean : out std_logic
+        reset        : in  std_logic;  -- active high
+        tick         : in  std_logic;  -- enable pulse
+        button_raw   : in  std_logic;  -- active low (FPGA button)
+        button_clean : out std_logic   -- active high (pressed = '1')
     );
 end entity debouncer;
 
 architecture rtl of debouncer is
-    signal counter : integer range 0 to DEBOUNCE_TIME;
+    signal counter : integer range 0 to DEBOUNCE_TIME := DEBOUNCE_TIME;
 begin
-    process(clk) 
+    process(clk)
     begin
         if rising_edge(clk) then
-            if reset = '1' then
-                button_clean <= '0';
-                counter      <= 0;
+            if reset = '1' then                         -- active-high reset
+                counter <= DEBOUNCE_TIME;
             elsif tick = '1' then
-                if button_raw = '1' then
-                    if counter < DEBOUNCE_TIME then
-                        counter <= counter + 1;
-                    else
-                        button_clean <= '1'; 
+                if button_raw = '0' then                -- active-low: '0' = pressed
+                    if counter > 0 then
+                        counter <= counter - 1;         -- count down while held
                     end if;
-                else
-                    counter      <= 0;   
-                    button_clean <= '0'; 
+                else                                    -- button released
+                    counter <= DEBOUNCE_TIME;           -- reset counter
                 end if;
             end if;
         end if;
     end process;
+
+    -- combinatorial output: active-high, clean pressed signal
+    button_clean <= '1' when counter = 0 and button_raw = '0' else '0';
+
 end architecture rtl;

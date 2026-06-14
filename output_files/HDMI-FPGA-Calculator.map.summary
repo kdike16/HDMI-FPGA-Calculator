@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Sun May 24 03:39:27 2026
+Analysis & Synthesis Status : Successful - Wed Jun 10 00:15:19 2026
 Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 Revision Name : HDMI-FPGA-Calculator
-Top-level Entity Name : baseline_c5gx
+Top-level Entity Name : toplevel_P1
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 0
-Total pins : 236
+Total registers : 28
+Total pins : 17
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0

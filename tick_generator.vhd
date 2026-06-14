@@ -17,7 +17,7 @@ architecture rtl of tick_generator is
     signal counter: unsigned (25 downto 0); 
 begin
 
-    process(clk) 
+    process(clk, reset) 
     begin 
         if rising_edge(clk) then 
             if reset = '1' then 

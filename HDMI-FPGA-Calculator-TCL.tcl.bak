@@ -1,0 +1,14 @@
+
+set_location_assignment PIN_M9 -to clk
+set_location_assignment PIN_P11 -to reset
+set_location_assignment PIN_F7 -to led[0]
+set_location_assignment PIN_F6 -to led[1]
+
+# Define I/O Standards (Typically 3.3-V LVTTL for Cyclone V development boards)
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to reset
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[1]
+
+# Commit assignments to the .qsf file
+export_assignments

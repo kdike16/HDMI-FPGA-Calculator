@@ -1,5 +1,5 @@
 Analysis & Synthesis report for HDMI-FPGA-Calculator
-Sun May 24 03:39:27 2026
+Wed Jun 10 00:15:19 2026
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -14,9 +14,14 @@ Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Post-Synthesis Netlist Statistics for Top Partition
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
+  9. Inverted Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: debouncer:u_debouncer
+ 12. Port Connectivity Checks: "seven_seg_driver:u_seven_seg"
+ 13. Port Connectivity Checks: "debouncer:u_debouncer"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -43,14 +48,14 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun May 24 03:39:27 2026          ;
+; Analysis & Synthesis Status     ; Successful - Wed Jun 10 00:15:19 2026          ;
 ; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                   ; HDMI-FPGA-Calculator                           ;
-; Top-level Entity Name           ; baseline_c5gx                                  ;
+; Top-level Entity Name           ; toplevel_P1                                    ;
 ; Family                          ; Cyclone V                                      ;
 ; Logic utilization (in ALMs)     ; N/A                                            ;
-; Total registers                 ; 0                                              ;
-; Total pins                      ; 236                                            ;
+; Total registers                 ; 28                                             ;
+; Total pins                      ; 17                                             ;
 ; Total virtual pins              ; 0                                              ;
 ; Total block memory bits         ; 0                                              ;
 ; Total DSP Blocks                ; 0                                              ;
@@ -69,7 +74,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                                          ; Setting            ; Default Value        ;
 +---------------------------------------------------------------------------------+--------------------+----------------------+
 ; Device                                                                          ; 5CGXFC5C6F27C7     ;                      ;
-; Top-level entity name                                                           ; baseline_c5gx      ; HDMI-FPGA-Calculator ;
+; Top-level entity name                                                           ; toplevel_P1        ; HDMI-FPGA-Calculator ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V            ;
 ; Use smart compilation                                                           ; Off                ; Off                  ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                   ;
@@ -159,56 +164,65 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 10          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 10          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processors 2-10        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                   ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                     ; Library ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------+---------+
-; baseline_c5gx.v                  ; yes             ; User Verilog HDL File  ; C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v ;         ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                 ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                          ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
+; debouncer.vhd                    ; yes             ; User VHDL File  ; C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/debouncer.vhd        ;         ;
+; edge_detector.vhd                ; yes             ; User VHDL File  ; C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd    ;         ;
+; pulse_counter.vhd                ; yes             ; User VHDL File  ; C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/pulse_counter.vhd    ;         ;
+; seven_seg_driver.vhd             ; yes             ; User VHDL File  ; C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/seven_seg_driver.vhd ;         ;
+; toplevel_P1.vhd                  ; yes             ; User VHDL File  ; C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd      ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                      ;
-+---------------------------------------------+--------------------+
-; Resource                                    ; Usage              ;
-+---------------------------------------------+--------------------+
-; Estimate of Logic utilization (ALMs needed) ; 0                  ;
-;                                             ;                    ;
-; Combinational ALUT usage for logic          ; 0                  ;
-;     -- 7 input functions                    ; 0                  ;
-;     -- 6 input functions                    ; 0                  ;
-;     -- 5 input functions                    ; 0                  ;
-;     -- 4 input functions                    ; 0                  ;
-;     -- <=3 input functions                  ; 0                  ;
-;                                             ;                    ;
-; Dedicated logic registers                   ; 0                  ;
-;                                             ;                    ;
-; I/O pins                                    ; 236                ;
-;                                             ;                    ;
-; Total DSP Blocks                            ; 0                  ;
-;                                             ;                    ;
-; Maximum fan-out node                        ; AUD_ADCLRCK~output ;
-; Maximum fan-out                             ; 1                  ;
-; Total fan-out                               ; 333                ;
-; Average fan-out                             ; 0.59               ;
-+---------------------------------------------+--------------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 30        ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 56        ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 4         ;
+;     -- 5 input functions                    ; 1         ;
+;     -- 4 input functions                    ; 14        ;
+;     -- <=3 input functions                  ; 37        ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 28        ;
+;                                             ;           ;
+; I/O pins                                    ; 17        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 28        ;
+; Total fan-out                               ; 297       ;
+; Average fan-out                             ; 2.52      ;
++---------------------------------------------+-----------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                      ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+---------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name   ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+---------------+--------------+
-; |baseline_c5gx             ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 236  ; 0            ; |baseline_c5gx      ; baseline_c5gx ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+---------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                        ;
++------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------+------------------+--------------+
+; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                        ; Entity Name      ; Library Name ;
++------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------+------------------+--------------+
+; |toplevel_P1                       ; 56 (0)              ; 28 (0)                    ; 0                 ; 0          ; 17   ; 0            ; |toplevel_P1                               ; toplevel_P1      ; work         ;
+;    |debouncer:u_debouncer|         ; 32 (32)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |toplevel_P1|debouncer:u_debouncer         ; debouncer        ; work         ;
+;    |edge_detector:u_edge_detector| ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |toplevel_P1|edge_detector:u_edge_detector ; edge_detector    ; work         ;
+;    |pulse_counter:u_pulse_counter| ; 9 (9)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |toplevel_P1|pulse_counter:u_pulse_counter ; pulse_counter    ; work         ;
+;    |seven_seg_driver:u_seven_seg|  ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |toplevel_P1|seven_seg_driver:u_seven_seg  ; seven_seg_driver ; work         ;
++------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -217,14 +231,69 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 28    ;
+; Number of registers using Synchronous Clear  ; 20    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 27    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; debouncer:u_debouncer|counter[5]       ; 2       ;
+; debouncer:u_debouncer|counter[8]       ; 2       ;
+; debouncer:u_debouncer|counter[13]      ; 2       ;
+; debouncer:u_debouncer|counter[15]      ; 2       ;
+; debouncer:u_debouncer|counter[16]      ; 2       ;
+; debouncer:u_debouncer|counter[17]      ; 2       ;
+; debouncer:u_debouncer|counter[18]      ; 2       ;
+; Total number of inverted registers = 7 ;         ;
++----------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |toplevel_P1|pulse_counter:u_pulse_counter|rw_count[3] ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |toplevel_P1|debouncer:u_debouncer|counter[0]          ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |toplevel_P1|debouncer:u_debouncer|counter[5]          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------+
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debouncer:u_debouncer ;
++----------------+--------+------------------------------------------+
+; Parameter Name ; Value  ; Type                                     ;
++----------------+--------+------------------------------------------+
+; debounce_time  ; 500000 ; Signed Integer                           ;
++----------------+--------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "seven_seg_driver:u_seven_seg" ;
++------------+-------+----------+--------------------------+
+; Port       ; Type  ; Severity ; Details                  ;
++------------+-------+----------+--------------------------+
+; decimal_en ; Input ; Info     ; Stuck at GND             ;
++------------+-------+----------+--------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "debouncer:u_debouncer" ;
++------+-------+----------+-------------------------+
+; Port ; Type  ; Severity ; Details                 ;
++------+-------+----------+-------------------------+
+; tick ; Input ; Info     ; Stuck at VCC            ;
++------+-------+----------+-------------------------+
 
 
 +-----------------------------------------------------+
@@ -232,14 +301,24 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_io_obuf        ; 97                          ;
-; arriav_lcell_comb     ; 1                           ;
-;     normal            ; 1                           ;
-;         0 data inputs ; 1                           ;
-; boundary_port         ; 236                         ;
+; arriav_ff             ; 28                          ;
+;     ENA               ; 7                           ;
+;     ENA SCLR          ; 20                          ;
+;     plain             ; 1                           ;
+; arriav_lcell_comb     ; 58                          ;
+;     arith             ; 27                          ;
+;         1 data inputs ; 27                          ;
+;     normal            ; 31                          ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 2                           ;
+;         3 data inputs ; 7                           ;
+;         4 data inputs ; 14                          ;
+;         5 data inputs ; 1                           ;
+;         6 data inputs ; 4                           ;
+; boundary_port         ; 17                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 3.80                        ;
+; Average LUT depth     ; 2.46                        ;
 +-----------------------+-----------------------------+
 
 
@@ -248,7 +327,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -258,7 +337,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Sun May 24 03:38:45 2026
+    Info: Processing started: Wed Jun 10 00:15:02 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off HDMI-FPGA-Calculator -c HDMI-FPGA-Calculator
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -271,286 +350,33 @@ Info (12021): Found 2 design units, including 1 entities, in source file tick_ge
     Info (12022): Found design unit 1: tick_generator-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/tick_generator.vhd Line: 16
     Info (12023): Found entity 1: tick_generator File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/tick_generator.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
-    Info (12022): Found design unit 1: edge_detector-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd Line: 14
-    Info (12023): Found entity 1: edge_detector File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd Line: 5
-Info (12127): Elaborating entity "baseline_c5gx" for the top level hierarchy
-Warning (10034): Output port "HEX2" at baseline_c5gx.v(83) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-Warning (10034): Output port "HEX3" at baseline_c5gx.v(86) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-Warning (10034): Output port "HDMI_TX_D" at baseline_c5gx.v(93) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-Warning (10034): Output port "HEX0" at baseline_c5gx.v(100) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-Warning (10034): Output port "HEX1" at baseline_c5gx.v(103) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-Warning (10034): Output port "HSMC_CLKOUT_n" at baseline_c5gx.v(111) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 111
-Warning (10034): Output port "HSMC_CLKOUT_p" at baseline_c5gx.v(112) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 112
-Warning (10034): Output port "LEDG" at baseline_c5gx.v(132) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-Warning (10034): Output port "LEDR" at baseline_c5gx.v(135) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-Warning (10034): Output port "SRAM_A" at baseline_c5gx.v(155) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-Warning (10034): Output port "ADC_CONVST" at baseline_c5gx.v(41) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 41
-Warning (10034): Output port "ADC_SCK" at baseline_c5gx.v(42) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 42
-Warning (10034): Output port "ADC_SDI" at baseline_c5gx.v(43) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 43
-Warning (10034): Output port "AUD_DACDAT" at baseline_c5gx.v(50) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 50
-Warning (10034): Output port "AUD_XCK" at baseline_c5gx.v(52) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 52
-Warning (10034): Output port "HDMI_TX_CLK" at baseline_c5gx.v(92) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 92
-Warning (10034): Output port "HDMI_TX_DE" at baseline_c5gx.v(94) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 94
-Warning (10034): Output port "HDMI_TX_HS" at baseline_c5gx.v(95) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 95
-Warning (10034): Output port "HDMI_TX_VS" at baseline_c5gx.v(97) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 97
-Warning (10034): Output port "HSMC_CLKOUT0" at baseline_c5gx.v(110) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 110
-Warning (10034): Output port "I2C_SCL" at baseline_c5gx.v(125) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 125
-Warning (10034): Output port "SD_CLK" at baseline_c5gx.v(144) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 144
-Warning (10034): Output port "SRAM_CE_n" at baseline_c5gx.v(156) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 156
-Warning (10034): Output port "SRAM_LB_n" at baseline_c5gx.v(158) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 158
-Warning (10034): Output port "SRAM_OE_n" at baseline_c5gx.v(159) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 159
-Warning (10034): Output port "SRAM_UB_n" at baseline_c5gx.v(160) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 160
-Warning (10034): Output port "SRAM_WE_n" at baseline_c5gx.v(161) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 161
-Warning (10034): Output port "UART_TX" at baseline_c5gx.v(171) has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 171
-Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "AUD_ADCLRCK" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 48
-    Warning (13040): bidirectional pin "AUD_BCLK" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 49
-    Warning (13040): bidirectional pin "AUD_DACLRCK" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 51
-    Warning (13040): bidirectional pin "HSMC_D[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 113
-    Warning (13040): bidirectional pin "HSMC_D[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 113
-    Warning (13040): bidirectional pin "HSMC_D[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 113
-    Warning (13040): bidirectional pin "HSMC_D[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 113
-    Warning (13040): bidirectional pin "HSMC_RX_n[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[4]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[5]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[6]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[7]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[8]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[9]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[10]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[11]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[12]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[13]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[14]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[15]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_n[16]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 118
-    Warning (13040): bidirectional pin "HSMC_RX_p[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[4]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[5]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[6]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[7]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[8]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[9]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[10]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[11]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[12]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[13]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[14]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[15]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_RX_p[16]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 119
-    Warning (13040): bidirectional pin "HSMC_TX_n[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[4]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[5]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[6]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[7]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[8]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[9]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[10]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[11]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[12]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[13]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[14]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[15]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_n[16]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 120
-    Warning (13040): bidirectional pin "HSMC_TX_p[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[4]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[5]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[6]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[7]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[8]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[9]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[10]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[11]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[12]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[13]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[14]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[15]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "HSMC_TX_p[16]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 121
-    Warning (13040): bidirectional pin "I2C_SDA" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 126
-    Warning (13040): bidirectional pin "SD_CMD" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 145
-    Warning (13040): bidirectional pin "SD_DAT[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 146
-    Warning (13040): bidirectional pin "SD_DAT[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 146
-    Warning (13040): bidirectional pin "SD_DAT[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 146
-    Warning (13040): bidirectional pin "SD_DAT[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 146
-    Warning (13040): bidirectional pin "SRAM_D[0]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[1]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[2]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[3]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[4]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[5]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[6]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[7]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[8]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[9]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[10]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[11]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[12]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[13]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[14]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-    Warning (13040): bidirectional pin "SRAM_D[15]" has no driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 157
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "ADC_CONVST" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 41
-    Warning (13410): Pin "ADC_SCK" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 42
-    Warning (13410): Pin "ADC_SDI" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 43
-    Warning (13410): Pin "AUD_DACDAT" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 50
-    Warning (13410): Pin "AUD_XCK" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 52
-    Warning (13410): Pin "HEX2[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX2[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX2[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX2[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX2[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 83
-    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HEX3[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HEX3[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 86
-    Warning (13410): Pin "HDMI_TX_CLK" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 92
-    Warning (13410): Pin "HDMI_TX_D[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[7]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[8]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[9]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[10]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[11]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[12]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[13]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[14]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[15]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[16]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[17]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[18]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[19]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[20]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[21]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[22]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_D[23]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 93
-    Warning (13410): Pin "HDMI_TX_DE" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 94
-    Warning (13410): Pin "HDMI_TX_HS" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 95
-    Warning (13410): Pin "HDMI_TX_VS" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 97
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX0[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 100
-    Warning (13410): Pin "HEX1[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HEX1[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HEX1[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HEX1[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HEX1[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HEX1[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 103
-    Warning (13410): Pin "HSMC_CLKOUT0" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 110
-    Warning (13410): Pin "HSMC_CLKOUT_n[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 111
-    Warning (13410): Pin "HSMC_CLKOUT_n[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 111
-    Warning (13410): Pin "HSMC_CLKOUT_p[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 112
-    Warning (13410): Pin "HSMC_CLKOUT_p[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 112
-    Warning (13410): Pin "I2C_SCL" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 125
-    Warning (13410): Pin "LEDG[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDG[7]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 132
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 135
-    Warning (13410): Pin "SD_CLK" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 144
-    Warning (13410): Pin "SRAM_A[0]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[1]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[2]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[3]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[4]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[5]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[6]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[7]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[8]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[9]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[10]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[11]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[12]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[13]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[14]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[15]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[16]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_A[17]" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 155
-    Warning (13410): Pin "SRAM_CE_n" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 156
-    Warning (13410): Pin "SRAM_LB_n" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 158
-    Warning (13410): Pin "SRAM_OE_n" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 159
-    Warning (13410): Pin "SRAM_UB_n" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 160
-    Warning (13410): Pin "SRAM_WE_n" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 161
-    Warning (13410): Pin "UART_TX" is stuck at GND File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 171
+    Info (12022): Found design unit 1: edge_detector-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd Line: 13
+    Info (12023): Found entity 1: edge_detector File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/edge_detector.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file pulse_counter.vhd
+    Info (12022): Found design unit 1: pulse_counter-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/pulse_counter.vhd Line: 14
+    Info (12023): Found entity 1: pulse_counter File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/pulse_counter.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file seven_seg_driver.vhd
+    Info (12022): Found design unit 1: seven_seg_driver-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/seven_seg_driver.vhd Line: 13
+    Info (12023): Found entity 1: seven_seg_driver File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/seven_seg_driver.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file toplevel_p1.vhd
+    Info (12022): Found design unit 1: toplevel_P1-rtl File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd Line: 15
+    Info (12023): Found entity 1: toplevel_P1 File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd Line: 5
+Info (12127): Elaborating entity "toplevel_P1" for the top level hierarchy
+Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:u_debouncer" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd Line: 34
+Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:u_edge_detector" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd Line: 49
+Info (12128): Elaborating entity "pulse_counter" for hierarchy "pulse_counter:u_pulse_counter" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd Line: 60
+Info (12128): Elaborating entity "seven_seg_driver" for hierarchy "seven_seg_driver:u_seven_seg" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/toplevel_P1.vhd Line: 71
+Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 29 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "ADC_SDO" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 44
-    Warning (15610): No output dependent on input pin "AUD_ADCDAT" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 47
-    Warning (15610): No output dependent on input pin "CLOCK_125_p" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 55
-    Warning (15610): No output dependent on input pin "CLOCK_50_B5B" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 56
-    Warning (15610): No output dependent on input pin "CLOCK_50_B6A" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 57
-    Warning (15610): No output dependent on input pin "CLOCK_50_B7A" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 58
-    Warning (15610): No output dependent on input pin "CLOCK_50_B8A" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 59
-    Warning (15610): No output dependent on input pin "CPU_RESET_n" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 62
-    Warning (15610): No output dependent on input pin "HDMI_TX_INT" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 96
-    Warning (15610): No output dependent on input pin "HSMC_CLKIN0" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 107
-    Warning (15610): No output dependent on input pin "HSMC_CLKIN_n[1]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 108
-    Warning (15610): No output dependent on input pin "HSMC_CLKIN_n[2]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 108
-    Warning (15610): No output dependent on input pin "HSMC_CLKIN_p[1]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 109
-    Warning (15610): No output dependent on input pin "HSMC_CLKIN_p[2]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 109
-    Warning (15610): No output dependent on input pin "KEY[0]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 129
-    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 129
-    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 129
-    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 129
-    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 164
-    Warning (15610): No output dependent on input pin "UART_RX" File: C:/Users/Kingsley Dike/HDMI-FPGA-Calculator/HDMI-FPGA-Calculator/baseline_c5gx.v Line: 167
-Info (21057): Implemented 236 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 29 input pins
-    Info (21059): Implemented 110 output pins
-    Info (21060): Implemented 97 bidirectional pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 268 warnings
-    Info: Peak virtual memory: 4909 megabytes
-    Info: Processing ended: Sun May 24 03:39:27 2026
-    Info: Elapsed time: 00:00:42
-    Info: Total CPU time (on all processors): 00:00:32
+Info (21057): Implemented 73 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 14 output pins
+    Info (21061): Implemented 56 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4955 megabytes
+    Info: Processing ended: Wed Jun 10 00:15:19 2026
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:36
 
 

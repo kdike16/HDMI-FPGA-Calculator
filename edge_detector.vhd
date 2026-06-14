@@ -1,39 +1,30 @@
-library ieee; 
-use ieee.std_logic_1164.all; 
-use ieee.numeric_std.all; 
-
+library ieee;
+use ieee.std_logic_1164.all;
+ 
 entity edge_detector is
-	port(
-		reset : in  std_logic;
-      clk : in  std_logic;
-		signal_in: in std_logic;
-		pulse_out: out std_logic
-	);
+    port(
+        clk        : in  std_logic;
+        reset      : in  std_logic;  -- active high
+        signal_in  : in  std_logic;
+        pulse_out  : out std_logic
+    );
 end entity edge_detector;
-
+ 
 architecture rtl of edge_detector is
-
-	signal current: std_logic := '0';
-	signal previous: std_logic:= '0';
-
+    signal signal_d : std_logic := '0';
 begin
-	process(clk)
+    process(clk)
     begin
         if rising_edge(clk) then
-            if reset = '0' then    
-                previous  <= '0';
-                current   <= '0';
-                pulse_out <= '0';
+            if reset = '1' then                         -- active-high reset
+                signal_d <= '0';
             else
-                previous <= current;
-                current  <= signal_in;
-                
-                if current = '1' and previous = '0' then
-                    pulse_out <= '1';
-                else
-                    pulse_out <= '0';
-                end if;
+                signal_d <= signal_in;                  -- delayed version of input
             end if;
         end if;
     end process;
+ 
+    -- combinatorial: rising edge detection, no extra latency
+    pulse_out <= signal_in and not signal_d;
+ 
 end architecture rtl;
